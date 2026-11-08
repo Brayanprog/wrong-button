@@ -1,0 +1,72 @@
+[
+  {
+    "id": "bgm_button_museum",
+    "name": "Button Museum Waltz",
+    "art_style": "hand-printed-storybook",
+    "category": null,
+    "media_type": "music",
+    "description": "Button Museum Waltz",
+    "aspect_ratio": "1:1",
+    "usage": "Ambient gameplay background music loop (assets/audio/bgm_button_museum.mp3)",
+    "chroma_key": false,
+    "prompt": "3/4 waltz at 132 BPM, music-box and marimba melody over soft bass and chord plucks, C major progression C-Am-F-G, gentle ticking, warm handmade storybook loop, seamless loop",
+    "actions": null,
+    "resolution": null
+  },
+  {
+    "id": "fraunces",
+    "name": "Fraunces (variable, upright + italic)",
+    "art_style": "hand-printed-storybook",
+    "category": null,
+    "media_type": "font",
+    "description": "Display serif for titles and prompt cards",
+    "aspect_ratio": "1:1",
+    "usage": "Headings, prompt-card display type, score numerals (assets/fonts/fraunces.woff2, fraunces-italic.woff2)",
+    "chroma_key": false,
+    "prompt": null,
+    "actions": null,
+    "resolution": null
+  },
+  {
+    "id": "karla",
+    "name": "Karla",
+    "art_style": "hand-printed-storybook",
+    "category": null,
+    "media_type": "font",
+    "description": "Text sans for HUD labels and body copy",
+    "aspect_ratio": "1:1",
+    "usage": "HUD, buttons, rules text (assets/fonts/karla.woff2)",
+    "chroma_key": false,
+    "prompt": null,
+    "actions": null,
+    "resolution": null
+  },
+  {
+    "id": "caveat",
+    "name": "Caveat",
+    "art_style": "hand-printed-storybook",
+    "category": null,
+    "media_type": "font",
+    "description": "Handwritten accent for curator notes and key hints",
+    "aspect_ratio": "1:1",
+    "usage": "Handwritten annotations (assets/fonts/caveat.woff2)",
+    "chroma_key": false,
+    "prompt": null,
+    "actions": null,
+    "resolution": null
+  },
+  {
+    "id": "procedural_specimens",
+    "name": "Procedural Button Specimens & Paper Stage",
+    "art_style": "hand-printed-storybook",
+    "category": null,
+    "media_type": "image_other",
+    "description": "All game artwork is drawn in code (utils/art.ts): wobbly ink discs with colour rims, cream inlays, geometric glyphs, paper labels, stitched borders, cross-hatching and paper grain. No raster image assets ship with the game.",
+    "aspect_ratio": "16:9",
+    "usage": "Canvas playfield, prompt card, header/footer chrome and all overlays",
+    "chroma_key": false,
+    "prompt": null,
+    "actions": null,
+    "resolution": null
+  }
+]

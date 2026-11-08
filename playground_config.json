@@ -1,0 +1,76 @@
+{
+  "schema": [
+    {
+      "name": "initialRoundDuration",
+      "type": "number",
+      "label": "Initial Time (s)",
+      "default": 3.5,
+      "min": 2,
+      "max": 6,
+      "step": 0.5
+    },
+    {
+      "name": "minRoundDuration",
+      "type": "number",
+      "label": "Fastest Time (s)",
+      "default": 1.2,
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1
+    },
+    {
+      "name": "waitRoundDuration",
+      "type": "number",
+      "label": "Wait Round Time (s)",
+      "default": 1.8,
+      "min": 1,
+      "max": 3,
+      "step": 0.2
+    },
+    {
+      "name": "basePointsPerRound",
+      "type": "number",
+      "label": "Base Points / Round",
+      "default": 100,
+      "min": 50,
+      "max": 500,
+      "step": 25
+    },
+    {
+      "name": "timeBonusMultiplier",
+      "type": "number",
+      "label": "Speed Bonus Mult",
+      "default": 50,
+      "min": 10,
+      "max": 200,
+      "step": 10
+    },
+    {
+      "name": "defaultMusicVolume",
+      "type": "number",
+      "label": "Default Music Volume",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.1
+    },
+    {
+      "name": "defaultSfxVolume",
+      "type": "number",
+      "label": "Default SFX Volume",
+      "default": 0.7,
+      "min": 0,
+      "max": 1,
+      "step": 0.1
+    }
+  ],
+  "values": {
+    "initialRoundDuration": 3.5,
+    "minRoundDuration": 1.2,
+    "waitRoundDuration": 1.8,
+    "basePointsPerRound": 100,
+    "timeBonusMultiplier": 50,
+    "defaultMusicVolume": 0.5,
+    "defaultSfxVolume": 0.7
+  }
+}

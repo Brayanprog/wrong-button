@@ -1,0 +1,118 @@
+{
+  "title": "Wrong Button",
+  "hook": "Press correct buttons under pressure",
+  "game_overview": "A high-stakes reflex and logic arcade game where players must follow rapid, trickily worded prompts to press the correct colored button—or hold their fire.",
+  "artstyle": "hand-printed-storybook",
+  "genre": "arcade",
+  "winning_condition": "Achieve the highest score streak possible without making an error or allowing the timer to expire.",
+  "losing_condition": "Pressing the incorrect button, tapping any button during a do-not-press rule, or running out of time.",
+  "player_mode": "single_player",
+  "supported_orientations": [
+    "portrait",
+    "landscape"
+  ],
+  "input_methods": [
+    "touch",
+    "mouse",
+    "keyboard"
+  ],
+  "score_options": {
+    "score_type": "points",
+    "score_order": "higher_is_better"
+  },
+  "low_end_device_support": true,
+  "mobile_playable": true,
+  "tv_playable": false,
+  "language": [
+    "en"
+  ],
+  "content_descriptors": [],
+  "controls": [
+    {
+      "input": "Red Button / Tap / Key 1 or Q or Left Arrow",
+      "action": "Select the Red quadrant button."
+    },
+    {
+      "input": "Blue Button / Tap / Key 2 or W or Up Arrow",
+      "action": "Select the Blue quadrant button."
+    },
+    {
+      "input": "Yellow Button / Tap / Key 3 or E or Down Arrow",
+      "action": "Select the Yellow quadrant button."
+    },
+    {
+      "input": "Green Button / Tap / Key 4 or R or Right Arrow",
+      "action": "Select the Green quadrant button."
+    },
+    {
+      "input": "Wait / Hands Off",
+      "action": "Refrain from touching any button when the instruction commands NOT, NEVER, or WAIT until timer clears."
+    },
+    {
+      "input": "P / Escape / Pause Icon",
+      "action": "Pause or resume the active game session."
+    }
+  ],
+  "sections": [
+    {
+      "title": "Design Pillars",
+      "content": "1. Razor-Sharp Clarity: Large, crisp typography with ultra-clear visual cues so cognitive friction stems from logic, never squinting. 2. Rhythm and Flow: Every correct tap builds momentum, rhythmic confidence, and escalating tempo. 3. Instant Accountability: Loss reasons are presented instantaneously with zero ambiguity and a one-tap restart cycle.",
+      "summary": "Core creative pillars defining player experience."
+    },
+    {
+      "title": "Core Loop",
+      "content": "Read the directive banner -> Discern the required target (or identify a withholding instruction) -> Execute the choice before the circular gauge or bar depletes -> Score increments, streak builds, timer narrows -> Repeat at accelerating velocity until a failure condition triggers instant game over with full post-mortem breakdown.",
+      "summary": "The moment-to-moment gameplay cycle."
+    },
+    {
+      "title": "Core Mechanics",
+      "content": "1. Multi-Tier Directives: Direct color match ('Press RED'), Negative logic ('Do NOT press BLUE', 'NEVER press GREEN'), Stroop interference (word RED colored in YELLOW font), History tests ('Press the PREVIOUS color'), Rule shifts ('All red is now blue'), and Null actions ('DO NOTHING', 'WAIT IT OUT'). 2. Dynamic Pressure Timer: Initial rounds grant 3.5 seconds; scales progressively down to 1.1 seconds with successful streaks, rewarding bonus speed points. 3. Multiplier & Streak System: Consecutive correct choices multiply base points (100 pts x streak multiplier). 4. Persistence: LocalStorage records personal best score, highest streak, and audio/haptic preferences.",
+      "summary": "The rules, challenge types, and scoring dynamics."
+    },
+    {
+      "title": "Movement & Scrolling Alignment",
+      "content": "Scrolling Axis: Static single-screen bounded arena with zero camera scrolling. Asset Orientation: Four symmetric quadrant buttons (Red top-left, Blue top-right, Yellow bottom-left, Green bottom-right) flanking a centered dynamic directive HUD. Movement Physics: Pure instant UI input state changes with elastic spring-press animations. Camera Behavior: Locked orthographic screen view centered on the primary button console.",
+      "summary": "Static arena perspective and layout orientation."
+    },
+    {
+      "title": "Visual Hierarchy & Layering",
+      "content": "Layer Separation: Background Layer is a warm cream paper stage (#F3E7D1) with seeded paper grain, halftone flecks and haberdashery doodles (spool, needle, thimble, scissors), all drawn procedurally in utils/art.ts. Playfield Layer features four hand-inked specimen buttons — Red (#CB5243, circle), Blue (#3C7197, diamond), Yellow (#DFAC33, star), Green (#527F50, square) — as wobbly ink discs with colour rims, cream inlays, stitched rings and paper caption tags. The centre prompt card is a taped paper label with a letterpress rule tag, hand-drawn clock and stitched-thread timer. Header is a printed museum sign; footer is a key/records strip; overlays are stitched paper posters with hard offset shadows.",
+      "summary": "Hand-printed Button Museum aesthetic: cream paper, ink, cross-hatching and washi tape."
+    },
+    {
+      "title": "Characters & Enemies",
+      "content": "The game features no humanoid or creature combatants. The primary antagonist is the player's own cognitive impulse and cognitive delay (Stroop effect, semantic misdirection, and trigger-happy reflexes).",
+      "summary": "Entity specifications and psychological antagonist."
+    },
+    {
+      "title": "Fairness Tools",
+      "content": "1. Solvability Guarantee: Every procedural directive generator deterministically verifies that exactly one unambiguous solution exists (or pure inaction for WAIT rounds). 2. Post-Mortem Diagnostic: Game over screen states the exact round directive, what button was pressed (or if timeout occurred), and what the correct decision was. 3. Interactive Tutorial: A step-by-step 5-prompt interactive warm-up teaches direct choice, negative logic, wait commands, and color deception before jumping into ranked survival.",
+      "summary": "Guaranteed solvability and clear mistake accountability."
+    },
+    {
+      "title": "Juice & Game Feel",
+      "content": "Anticipation Juice: gentle idle pulse and dashed ink ring on the hovered specimen, with ink flecks and sparkles. State Change Juice: button depress scale(0.86), dashed ink-ripple shockwaves on valid taps, screen shake and error buzz on failure. Impact Juice: ink-fleck confetti and star sparkles on correct taps, paper-shake on failure, chimes on streak milestones (5, 10, 20, 50) and a patience-bonus celebration for HANDS OFF rounds.",
+      "summary": "Tactile, audio, and visual feedback specifications."
+    },
+    {
+      "title": "Social Mechanics & Audience",
+      "content": "Aimed at arcade reflex, brain training, and twitch puzzle enthusiasts. Focuses on high personal mastery, beat-your-own-best score loops, and streak records stored locally.",
+      "summary": "Target audience and personal competitive drive."
+    },
+    {
+      "title": "Accessibility",
+      "content": "1. Colorblind Symbols: Each button features both distinct hue AND geometric symbols (Circle for Red, Diamond for Blue, Star for Yellow, Square for Green) plus bold text labels. 2. Audio toggles for SFX and the Button Museum Waltz music loop. 3. Full keyboard parity (1,2,3,4 or Q,W,E,R or Arrow Keys) alongside touch and mouse controls.",
+      "summary": "Inclusivity, colorblind support, and flexible inputs."
+    },
+    {
+      "title": "Structural Integrity",
+      "content": "Title Screen (Start Game, How to Play / Tutorial, Settings, High Score Display) -> Tutorial Modal / Interactive Mode -> Active Arcade Gameplay -> Pause Overlay -> Game Over Screen with instant 'Try Again' button, score breakdown, streak badges, and Share-Score clipboard generator.",
+      "summary": "Full screen flow and state management."
+    },
+    {
+      "title": "Virtual Touch Controls Implementation",
+      "content": "The four quadrant buttons serve as primary virtual touch targets natively on both mobile and desktop. Button elements use pointer-events-auto and touch-none styling to eliminate mobile gesture delays and scrolling conflicts. Responsive flex/grid container scales seamlessly between portrait smartphones and wide desktop monitors.",
+      "summary": "Mobile-native touch handling and responsiveness."
+    }
+  ]
+}

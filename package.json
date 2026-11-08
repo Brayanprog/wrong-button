@@ -1,0 +1,23 @@
+{
+  "name": "wrong-button",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wrong Button — a hand-printed reflex game in The Button Museum. Four specimens, one instruction, no mercy.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "npm run build && npx --yes serve dist -l 3000"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "esbuild": "^0.28.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
