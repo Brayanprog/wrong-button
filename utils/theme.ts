@@ -65,7 +65,9 @@ export const GAME_CSS = `
 html, body, #root {
   width: 100%;
   height: 100%;
+  height: 100dvh;
   margin: 0;
+  overscroll-behavior: none;
   background: var(--paper-deep);
 }
 
@@ -104,7 +106,11 @@ body {
   display: flex;
   align-items: center;
   gap: clamp(10px, 2vw, 22px);
-  padding: 9px clamp(12px, 2.6vw, 30px);
+  padding:
+    calc(9px + env(safe-area-inset-top, 0px))
+    calc(clamp(12px, 2.6vw, 30px) + env(safe-area-inset-right, 0px))
+    9px
+    calc(clamp(12px, 2.6vw, 30px) + env(safe-area-inset-left, 0px));
   background-color: var(--paper);
   border-bottom: 2px solid var(--ink);
   box-shadow: 0 3px 0 rgba(46, 36, 25, 0.07);
@@ -217,10 +223,12 @@ body {
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-control:hover {
   transform: translate(-1px, -2px);
   box-shadow: 4px 6px 0 var(--ink);
   background: var(--yellow-tint);
+}
 }
 .wb-control:active {
   transform: translate(2px, 3px);
@@ -237,7 +245,11 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
-  padding: clamp(8px, 1.7vw, 20px) clamp(10px, 2.6vw, 34px);
+  padding:
+    clamp(8px, 1.7vw, 20px)
+    calc(clamp(10px, 2.6vw, 34px) + env(safe-area-inset-right, 0px))
+    clamp(8px, 1.7vw, 20px)
+    calc(clamp(10px, 2.6vw, 34px) + env(safe-area-inset-left, 0px));
   background-color: var(--paper-deep);
   background-image:
     radial-gradient(rgba(46, 36, 25, 0.13) 0.7px, transparent 0.9px),
@@ -296,7 +308,11 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 5px clamp(12px, 2.6vw, 30px);
+  padding:
+    5px
+    calc(clamp(12px, 2.6vw, 30px) + env(safe-area-inset-right, 0px))
+    calc(5px + env(safe-area-inset-bottom, 0px))
+    calc(clamp(12px, 2.6vw, 30px) + env(safe-area-inset-left, 0px));
   background: var(--paper);
   border-top: 2px solid var(--ink);
   font-size: 11px;
@@ -540,7 +556,9 @@ body {
   filter: drop-shadow(2px 3px 0 rgba(46, 36, 25, 0.14));
   transition: transform 180ms ease;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-specimen:hover .wb-specimen-mark { transform: translateY(-3px) rotate(-4deg); }
+}
 .wb-specimen-name {
   margin-top: 3px;
   font-family: var(--font-display);
@@ -586,16 +604,20 @@ body {
   box-shadow: 4px 5px 0 var(--ink);
   transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-btn:hover {
   transform: translate(-1px, -2px);
   box-shadow: 6px 8px 0 var(--ink);
+}
 }
 .wb-btn:active {
   transform: translate(3px, 4px);
   box-shadow: 1px 1px 0 var(--ink);
 }
 .wb-btn-primary { background: var(--red); color: var(--cream); }
+@media (hover: hover) and (pointer: fine) {
 .wb-btn-primary:hover { background: #D65C4C; }
+}
 .wb-btn-blue { background: var(--blue); color: #FFF9E9; }
 .wb-btn-quiet {
   background: transparent;
@@ -603,7 +625,9 @@ body {
   font-size: clamp(12px, 1.3vw, 14px);
   padding: 10px 16px;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-btn-quiet:hover { background: var(--paper); box-shadow: 4px 6px 0 var(--ink); }
+}
 .wb-btn-danger-quiet { color: var(--red-deep); }
 .wb-btn-wide { width: 100%; }
 .wb-btn svg { flex: 0 0 auto; }
@@ -840,7 +864,9 @@ body {
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-toggle:hover { transform: translate(-1px, -1px); box-shadow: 4px 5px 0 var(--ink); }
+}
 .wb-toggle:active { transform: translate(2px, 3px); box-shadow: 0 1px 0 var(--ink); }
 .wb-toggle.is-muted { background: var(--red-tint); color: var(--red-deep); }
 
@@ -970,7 +996,9 @@ body {
   box-shadow: 2px 2px 0 var(--ink);
   cursor: pointer;
 }
+@media (hover: hover) and (pointer: fine) {
 .wb-x:hover { background: var(--red-tint); }
+}
 .wb-x:active { transform: translate(1px, 2px); box-shadow: 0 0 0 var(--ink); }
 
 /* ------------------------------------------------------------------ */
@@ -985,7 +1013,14 @@ body {
 }
 
 @media (max-width: 640px) {
-  .wb-header { padding: 7px 11px; gap: 9px; }
+  .wb-header {
+    padding:
+      calc(7px + env(safe-area-inset-top, 0px))
+      calc(11px + env(safe-area-inset-right, 0px))
+      7px
+      calc(11px + env(safe-area-inset-left, 0px));
+    gap: 9px;
+  }
   .wb-wordmark { font-size: 21px; }
   .wb-brand-mark { width: 31px; height: 31px; }
   .wb-brand { gap: 6px; }
@@ -994,8 +1029,15 @@ body {
   .wb-controls { gap: 6px; }
   .wb-control { width: 32px; height: 32px; border-width: 1.8px; }
   .wb-help-control { display: none; }
+  .wb-stat-round, .wb-hud-rule-round { display: none; }
   .wb-footer { display: none; }
-  .wb-main { padding: 7px 8px; }
+  .wb-main {
+    padding:
+      7px
+      calc(8px + env(safe-area-inset-right, 0px))
+      7px
+      calc(8px + env(safe-area-inset-left, 0px));
+  }
   .wb-poster { padding: 25px 18px 20px; box-shadow: 8px 10px 0 rgba(46, 36, 25, 0.24); }
   .wb-poster::after { inset: 7px; }
   .wb-tape-left { left: 12px; width: 78px; }
@@ -1017,15 +1059,40 @@ body {
 }
 
 @media (max-height: 620px) and (orientation: landscape) {
-  .wb-header { padding: 5px 14px; }
-  .wb-footer { padding: 3px 14px; }
-  .wb-main { padding: 6px 12px; }
+  .wb-header {
+    padding:
+      calc(5px + env(safe-area-inset-top, 0px))
+      calc(14px + env(safe-area-inset-right, 0px))
+      5px
+      calc(14px + env(safe-area-inset-left, 0px));
+  }
+  .wb-footer {
+    padding:
+      3px
+      calc(14px + env(safe-area-inset-right, 0px))
+      calc(3px + env(safe-area-inset-bottom, 0px))
+      calc(14px + env(safe-area-inset-left, 0px));
+  }
+  .wb-main {
+    padding:
+      6px
+      calc(12px + env(safe-area-inset-right, 0px))
+      6px
+      calc(12px + env(safe-area-inset-left, 0px));
+  }
   .wb-poster { padding: 19px 30px 15px; }
   .wb-poster h1 { font-size: 46px; }
   .wb-tagline { font-size: 12px; margin-top: 8px; }
   .wb-specimens { margin: 11px 0 9px; padding: 8px 0; }
   .wb-actions { margin-top: 11px; }
   .wb-footnote { margin-top: 9px; font-size: 16px; }
+}
+
+/* Touch targets: keep every control at least ~44px on coarse pointers. */
+@media (pointer: coarse) {
+  .wb-control { width: 44px; height: 44px; }
+  .wb-toggle { padding: 12px 8px; }
+  .wb-x { width: 44px; height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

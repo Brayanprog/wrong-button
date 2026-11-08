@@ -386,6 +386,19 @@ export default function App() {
   const isPortrait = usePortraitStage();
   const isMobile = useIsMobile();
   const fontsReady = useFontsReady();
+
+  // Honour prefers-reduced-motion in the canvas loop (no pulsing/sparkles/shake).
+  const reducedMotionRef = useRef(false);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => {
+      reducedMotionRef.current = query.matches;
+    };
+    sync();
+    query.addEventListener?.('change', sync);
+    return () => query.removeEventListener?.('change', sync);
+  }, []);
   const layout = isPortrait ? PORTRAIT_LAYOUT : LANDSCAPE_LAYOUT;
   const canvasWidth = layout.width;
   const canvasHeight = layout.height;
@@ -762,7 +775,9 @@ export default function App() {
   const spawnSparks = useCallback(
     (x: number, y: number, color: string, count = 22) => {
       const accents = [color, color, PALETTE.cream, PALETTE.yellow, PALETTE.ink];
-      for (let i = 0; i < count; i += 1) {
+      // Keep particle counts light on phones so budget GPUs hold 60fps.
+      const total = Math.max(4, Math.round(count * (isMobile ? 0.55 : 1)));
+      for (let i = 0; i < total; i += 1) {
         const angle = Math.random() * Math.PI * 2;
         const speed = 70 + Math.random() * 310;
         const shapeRoll = Math.random();
@@ -782,7 +797,7 @@ export default function App() {
         });
       }
     },
-    [],
+    [isMobile],
   );
 
   const spawnShockwave = useCallback((x: number, y: number, color: string) => {
@@ -1037,7 +1052,9 @@ export default function App() {
       for (const color of ['red', 'blue', 'yellow', 'green'] as ButtonColor[]) {
         const button = BUTTONS[color];
         const distance = Math.hypot(px - button.x, py - button.y);
-        if (distance <= button.radius * 1.32) {
+        // Wider hit area on touch devices, where the stage is scaled down.
+        const hitScale = isMobile ? 1.6 : 1.32;
+        if (distance <= button.radius * hitScale) {
           handleButtonAction(color);
           return;
         }
@@ -1057,6 +1074,7 @@ export default function App() {
       handleButtonAction,
       isGameMenuOpen,
       isHowToPlayOpen,
+      isMobile,
     ],
   );
 
@@ -1197,7 +1215,8 @@ export default function App() {
   ) => {
     const ink = TOKEN_INK[button.id];
     const radius = button.radius;
-    const idlePulse = hovered ? 1 + Math.sin(now * 4.2) * 0.006 : 1;
+    const calm = reducedMotionRef.current;
+    const idlePulse = hovered && !calm ? 1 + Math.sin(now * 4.2) * 0.006 : 1;
 
     ctx.save();
     ctx.translate(button.x, button.y);
@@ -1210,7 +1229,7 @@ export default function App() {
 
     if (hovered) {
       ctx.save();
-      ctx.rotate(now * 0.18);
+      ctx.rotate(calm ? 0 : now * 0.18);
       ctx.strokeStyle = withAlpha(ink.deep, 0.55);
       ctx.lineWidth = 2;
       ctx.setLineDash([2, 10]);
@@ -1220,22 +1239,24 @@ export default function App() {
       );
       ctx.stroke();
       ctx.restore();
-      drawSparkle(
-        ctx,
-        Math.cos(now * 1.3) * (radius + 37),
-        Math.sin(now * 1.7) * (radius + 31),
-        7,
-        withAlpha(ink.deep, 0.6),
-        now * 0.4,
-      );
-      drawSparkle(
-        ctx,
-        Math.cos(now * 1.1 + 2.4) * (radius + 32),
-        Math.sin(now * 1.4 + 2.4) * (radius + 40),
-        4.5,
-        withAlpha(PALETTE.ink, 0.4),
-        -now * 0.3,
-      );
+      if (!calm) {
+        drawSparkle(
+          ctx,
+          Math.cos(now * 1.3) * (radius + 37),
+          Math.sin(now * 1.7) * (radius + 31),
+          7,
+          withAlpha(ink.deep, 0.6),
+          now * 0.4,
+        );
+        drawSparkle(
+          ctx,
+          Math.cos(now * 1.1 + 2.4) * (radius + 32),
+          Math.sin(now * 1.4 + 2.4) * (radius + 40),
+          4.5,
+          withAlpha(PALETTE.ink, 0.4),
+          -now * 0.3,
+        );
+      }
     }
 
     // Hard printed shadow.
@@ -1699,7 +1720,10 @@ export default function App() {
     ctx.save();
     if (shakeEndTimeRef.current > performance.now() && screenShakeRef.current > 0) {
       const remaining = shakeEndTimeRef.current - performance.now();
-      const magnitude = screenShakeRef.current * Math.max(0, remaining / 330);
+      const magnitude =
+        screenShakeRef.current *
+        Math.max(0, remaining / 330) *
+        (reducedMotionRef.current ? 0 : 1);
       ctx.translate(
         (Math.random() - 0.5) * magnitude,
         (Math.random() - 0.5) * magnitude,
@@ -1881,8 +1905,8 @@ export default function App() {
               <span className="wb-stat-mult">×{currentMultiplier}</span>
             </span>
           </div>
-          <span className="wb-hud-rule" aria-hidden="true" />
-          <div className="wb-stat">
+          <span className="wb-hud-rule wb-hud-rule-round" aria-hidden="true" />
+          <div className="wb-stat wb-stat-round">
             <span className="wb-stat-label">Round</span>
             <span className="wb-stat-value">{roundRef.current}</span>
           </div>
