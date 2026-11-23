@@ -1058,6 +1058,12 @@ body {
   .wb-score-strip { grid-template-columns: repeat(3, 1fr); }
 }
 
+@media (max-width: 400px) {
+  /* Keep the mark, drop the wordmark: the header must never overflow. */
+  .wb-brand-text { display: none; }
+  .wb-brand { gap: 0; }
+}
+
 @media (max-height: 620px) and (orientation: landscape) {
   .wb-header {
     padding:
@@ -1093,6 +1099,8 @@ body {
   .wb-control { width: 44px; height: 44px; }
   .wb-toggle { padding: 12px 8px; }
   .wb-x { width: 44px; height: 44px; }
+  /* Keyboard legend is noise on touch, and its row is wider than a phone. */
+  .wb-footer { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

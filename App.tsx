@@ -1883,7 +1883,7 @@ export default function App() {
       <header className="wb-header">
         <div className="wb-brand">
           <BrandMark className="wb-brand-mark" />
-          <div>
+          <div className="wb-brand-text">
             <div className="wb-wordmark">
               Wrong <em>Button</em>
             </div>
