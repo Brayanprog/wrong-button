@@ -1,0 +1,34 @@
+# Netlify configuration — static build of the game.
+# Build locally with `npm run build`, output in dist/.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The bundle filename is not content-hashed, so never cache it aggressively.
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fonts and music are stable binaries; a week of caching is plenty.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Baseline hardening. Deliberately no X-Frame-Options / frame-ancestors:
+# YouTube Playables may embed the game in an iframe.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

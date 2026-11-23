@@ -43,9 +43,10 @@ npm run preview      # serves dist/ at http://localhost:3000
 
 ## Deploy
 
-Deployed on [Vercel](https://vercel.com) as a static site (`vercel.json`:
-`npm run build` → `dist/`). Pushes to `main` can be connected to the Vercel
-project **`wrong-button`** for automatic redeploys.
+Deployed on [Netlify](https://www.netlify.com) as a static site
+(`netlify.toml`: `npm run build` → `dist/`). The site is Git-connected to
+`Brayanprog/wrong-button`, so every push to `main` triggers a redeploy.
+The original [Vercel](https://vercel.com) deployment is kept as a mirror.
 
 ## Structure
 
